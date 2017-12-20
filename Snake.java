@@ -28,7 +28,7 @@ public class Snake {
         if(direction == 1) sX[0]++; //right
         if(direction == 3) sX[0]--; //left
 
-        if (sY[0]>SnakeGameMain.HEIGHT-1) sY[0] = 0;
+        if (sY[0]>SnakeGameMain.HEIGHT-1) sY[0] = 0;  //making snake move through borders of window
         if (sY[0]<0) sY[0] = SnakeGameMain.HEIGHT-1;
 
         if (sX[0]>SnakeGameMain.WIDTH-1) sX[0] = 0;

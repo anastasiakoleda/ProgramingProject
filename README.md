@@ -1,1 +1,2 @@
-snake
+# Snake game
+## by Anastasia Koleda

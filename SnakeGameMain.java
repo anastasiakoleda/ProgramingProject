@@ -11,19 +11,19 @@ import java.awt.image.ImageObserver;
 public class SnakeGameMain extends JPanel implements ActionListener {
 
     public static JFrame jFrame;
-    public static final int SCALE = 32; //Scale of the window
+    public static final int SCALE = 32; //Size of square
     public static final int WIDTH = 20; //Number of squares in width
-    public static final int HEIGHT = 20; //Number of square in height
+    public static final int HEIGHT = 20; //Number of squares in height
     public static int speed = 10;
 
     Snake s = new Snake(5,6,5,5);
     Apple apple = new Apple(Math.abs ((int) (Math.random()*SnakeGameMain.WIDTH - 1)),Math.abs ((int) (Math.random()*SnakeGameMain.HEIGHT - 1)));
-    Timer timer = new Timer(1000/speed,this);
+    Timer timer = new Timer(1000/speed,this); //speed of the snake
 
     public SnakeGameMain() {
         timer.start();
 
-        addKeyListener(new KeyBoard());
+        addKeyListener(new KeyBoard()); //Adding keyboard listener
         setFocusable(true);
 
     }
@@ -61,7 +61,7 @@ public class SnakeGameMain extends JPanel implements ActionListener {
 
     public static void main(String[] args) {
 
-        jFrame = new JFrame("Snake"); //Title of the window
+        jFrame = new JFrame("Snake game Anastasia Koleda IVSB11"); //Title of the window
         jFrame.setSize(WIDTH*SCALE+6,HEIGHT*SCALE+28); //Window size
         jFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);// Exit if window closed
         jFrame.setResizable(false); //Can't resize the window
@@ -74,14 +74,14 @@ public class SnakeGameMain extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         s.move();
         if ((s.sX[0] == apple.posX)&&(s.sY[0] == apple.posY)) {
-            apple.setRandomPosition();
-            s.length++;
+            apple.setRandomPosition(); //Generate new position for apple
+            s.length++; //Increase snakes length
         }
         for (int l = 1; l < s.length; l++){
            if ((s.sX[l] == apple.posX)&&(s.sY[l] == apple.posY)){
-               apple.setRandomPosition();
+               apple.setRandomPosition();  // If apple appear inside the snake then change apple's posit
             }
-            if ((s.sX[0] == s.sX[l])&&(s.sY[0] == s.sY[l])){
+            if ((s.sX[0] == s.sX[l])&&(s.sY[0] == s.sY[l])){ //If the snake eats itself game will restart
                timer.stop();
                JOptionPane.showMessageDialog(null,"You lose! Start again?");
                jFrame.setVisible(false);
